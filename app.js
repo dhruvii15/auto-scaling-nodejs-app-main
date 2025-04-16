@@ -1,12 +1,21 @@
-const express = require('express');
+const express = require("express");
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+const cors = require("cors");
+
+dotenv.config();
+
 const app = express();
-const port = 3000;
+app.use(cors());
+app.use(express.json());
 
-// Home Route
-app.get('/', (req, res) => {
-  res.send('<h1>The local IP Address of this Amazon EC2 instance is:</h1>');
-});
+const userRoutes = require("./routes/userRoutes");
+app.use("/api/users", userRoutes);
 
-app.listen(port, () => {
-  console.log(`Demo app is up and listening to port ${port}`);
-});
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => console.log("MongoDB Connected"))
+  .catch((err) => console.error(err));
+
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

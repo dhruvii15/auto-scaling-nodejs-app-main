@@ -1,9 +1,16 @@
 {
-  "name": "auto-scaling-nodejs-app",
+  "name": "my-app",
   "version": "1.0.0",
-  "author": "felixyu",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
   "dependencies": {
-    "express": "4.17.1",
-    "nodemon": "^3.1.9"
+    "aws-sdk": "^2.1692.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^4.21.2",
+    "mongoose": "^7.8.6",
+    "multer": "^1.4.5-lts.1"
   }
 }
